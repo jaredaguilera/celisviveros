@@ -1,5 +1,9 @@
 # Celi’s Viveros
 
+Actualización SEO: dominio canónico `https://celisviveros.cl`, sitemap en `/sitemap.xml` y horarios oficiales centralizados en `src/config/site.ts`. Consultar [SEO_SEARCH_CONSOLE.md](SEO_SEARCH_CONSOLE.md) para verificación DNS, pendientes de Cloudflare, discrepancia de dirección y seguimiento a 30/60/90 días. Los cambios permanecen locales hasta su revisión y despliegue.
+
+El catálogo carga miniaturas WebP desde `public/assets/miniaturas/` y conserva las imágenes grandes para ampliar. Al cambiar una foto, actualizar también su miniatura (600 px de ancho, WebP calidad 84) y sus dimensiones HTML.
+
 Landing estática de una página en Astro, TypeScript y CSS. Utiliza las 31 fotos WebP reales del kit; no publica precios, stock ni nombres botánicos como datos confirmados. No incluye rastreadores, formulario ni servicios externos de tipografía.
 
 ## Ejecutar
@@ -25,7 +29,7 @@ Editar únicamente `src/config/site.ts` para completar:
 - `email`: correo oficial.
 - `publicSiteUrl`: origen HTTPS del dominio final, sin rutas ni parámetros.
 
-Los campos empiezan vacíos y los enlaces sin configuración válida se omiten. WhatsApp incorpora el mensaje solicitado y el correo incorpora el asunto de consulta mayorista. Sin contactos configurados, producción muestra un mensaje temporal. Antes de lanzar comercialmente, completar al menos un canal.
+Los contactos oficiales y el dominio están configurados. Los enlaces sin configuración válida se omiten. WhatsApp incorpora el mensaje solicitado y el correo incorpora el asunto de consulta mayorista.
 
 Después de cada cambio, ejecutar nuevamente el build. La URL final activa canonical, imagen Open Graph absoluta y entrada en sitemap. Mientras no exista dominio confirmado, el sitemap queda vacío y robots no declara una URL ficticia. No hay píxeles publicitarios.
 
@@ -67,8 +71,8 @@ Registrar o usar el dominio que confirme el propietario. Añadirlo al proveedor 
 - [ ] Validar nombres de plantas en `data/inventario_por_validar.csv` antes de introducir información específica.
 - [ ] Confirmar disponibilidad, precios y políticas directamente; no se anuncian como confirmados en la página.
 - [ ] Confirmar condiciones de entrega, cantidades mínimas y plazos antes de añadirlos.
-- [x] Dirección confirmada por el propietario: San Jorge, Parcela 40, La Cruz, Quillota, V Región.
-- [ ] Confirmar horarios y coordenadas si se decide publicarlos (no se muestran).
+- [ ] Resolver la diferencia entre San Jorge, Parcela 40 y San Jorge 40 con el administrador.
+- [x] Horarios del encargo publicados; no se incorporan coordenadas sin verificar.
 - [ ] Revisar contenido, fotografías, teclado y pantalla móvil.
 - [ ] Decidir privacidad/consentimiento antes de incorporar analítica o publicidad.
 - [ ] `npm run check` y `npm run build` sin errores.

@@ -1,6 +1,6 @@
 // Completar únicamente con datos oficiales. Reiniciar/build después de editar.
 export const site = {
-  name: "Celi’s Viveros",
+  name: "Celi's Viveros",
   whatsappNumber: '56949070733', // Formato internacional, solo dígitos.
   facebookUrl: 'https://www.facebook.com/profile.php?id=100063702034489&locale=es_LA',
   instagramUrl: 'https://www.instagram.com/celis_viveros/',
@@ -8,7 +8,15 @@ export const site = {
   phoneDisplay: '+56 9 4907 0733',
   streetAddress: 'San Jorge, Parcela 40',
   addressDisplay: 'San Jorge, Parcela 40, La Cruz, Quillota, V Región',
-  publicSiteUrl: '', // URL https del dominio final, sin ruta.
+  publicSiteUrl: 'https://celisviveros.cl',
+  addressLocality: 'La Cruz',
+  addressRegion: 'Región de Valparaíso',
+  hoursDisplay: 'Lunes a viernes 09:00–18:00; sábado 09:00–14:00; domingo cerrado.',
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '09:00', closes: '14:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Sunday', opens: '00:00', closes: '00:00' },
+  ],
 };
 export const publicUrl = /^https:\/\/[^/]+\/?$/.test(site.publicSiteUrl) ? site.publicSiteUrl.replace(/\/$/, '') : '';
 export const whatsappUrl = /^\d{8,15}$/.test(site.whatsappNumber)

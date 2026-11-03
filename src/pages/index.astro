@@ -14,22 +14,36 @@ const categories = [
   { id: 'follajes', title: 'Cóleos y follajes' },
   { id: 'vivero', title: 'Nuestro vivero' },
 ];
-const description = 'Vivero familiar productor de plantas ornamentales, flores y suculentas en Pocochay, La Cruz, Chile. Consulta por disponibilidad y cotizaciones mayoristas.';
+const title = "Celi's Viveros | Vivero y plantas ornamentales en La Cruz";
+const description = 'Plantas ornamentales, flores y suculentas en San Jorge, La Cruz, provincia de Quillota. Visita el vivero y consulta disponibilidad y ventas mayoristas.';
 const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && !value).map(([key]) => key);
 ---
 <!doctype html>
 <html lang="es-CL">
   <head>
     <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" />
-    <title>Celi's Viveros | Plantas ornamentales y suculentas en La Cruz</title>
+    <title>{title}</title>
     <meta name="description" content={description} /><meta name="theme-color" content="#203f30" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-vivero.png" type="image/png" sizes="64x64" />
     {publicUrl && <link rel="canonical" href={`${publicUrl}/`} />}
     <meta property="og:type" content="website" /><meta property="og:locale" content="es_CL" />
     <meta property="og:title" content="Celi’s Viveros · Desde Pocochay, con raíces" /><meta property="og:description" content={description} />
     {publicUrl && <><meta property="og:url" content={`${publicUrl}/`} /><meta property="og:image" content={`${publicUrl}${image(1)}`} /></>}
     <meta property="og:image:alt" content={photo(1).alt} />
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: site.phoneDisplay, email: site.email, sameAs: [site.facebookUrl, site.instagramUrl].filter(Boolean), address: { '@type': 'PostalAddress', streetAddress: site.streetAddress, addressLocality: 'La Cruz, Quillota', addressRegion: 'Valparaíso', addressCountry: 'CL' }, ...(publicUrl ? { url: publicUrl } : {}) })} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${publicUrl}${image(1)}`} />
+    <meta name="twitter:image:alt" content={photo(1).alt} />
+    <meta property="og:site_name" content={site.name} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'GardenStore', '@id': `${publicUrl}/#business`,
+      name: site.name, url: `${publicUrl}/`, description, telephone: `+${site.whatsappNumber}`, email: site.email,
+      image: `${publicUrl}${image(1)}`, ...(logo ? { logo: `${publicUrl}/logo.png` } : {}),
+      sameAs: [site.facebookUrl, site.instagramUrl],
+      address: { '@type': 'PostalAddress', streetAddress: site.streetAddress, addressLocality: site.addressLocality, addressRegion: site.addressRegion, addressCountry: 'CL' },
+      openingHoursSpecification: site.openingHoursSpecification,
+    }).replace(/</g, '\u003c')} />
   </head>
   <body>
     <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -41,8 +55,9 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
       <section class="hero wrap">
         <div class="hero-copy">
           <p class="eyebrow">POCOCHAY · LA CRUZ</p>
-          <h1>Un poquito de verde.<br /><em>Muchas posibilidades.</em></h1>
-          <p class="intro">Plantas ornamentales y suculentas de nuestro vivero familiar. Consultas y cotizaciones mayoristas, directamente con nosotros.</p>
+          <h1>Vivero de plantas ornamentales en La Cruz, Quillota</h1>
+          <p class="slogan">Un poquito de verde. <em>Muchas posibilidades.</em></p>
+          <p class="intro">Producimos y vendemos plantas ornamentales, flores de temporada, suculentas, hierbas y plantines, según disponibilidad. Recibimos a particulares y compradores mayoristas en San Jorge, La Cruz, en la Región de Valparaíso.</p>
           <div id="contacto" class="hero-contact"><h2>Conversemos</h2><ContactButtons /></div>
           <address class="business-details">
             <a href={`tel:+${site.whatsappNumber}`}><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 3 5-2 2a15 15 0 0 0 5 5l2-2 5 3-1 4C11 22 2 13 4 4l4-1Z" /></svg><span>{site.phoneDisplay}</span></a>
@@ -58,7 +73,7 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
         </div>
       </section>
       <section class="plants wrap" id="plantas">
-        <div class="section-heading"><h2>Nuestras <em>plantas.</em></h2><p>Fotos reales. Toca una para ampliar.</p></div>
+        <div class="section-heading"><h2>Nuestras <em>plantas.</em></h2><p>Flores, ornamentales y suculentas de nuestro vivero. Fotos reales; toca una para ampliar.</p></div>
         <div class="catalog-filters" role="group" aria-label="Filtrar catálogo">
           <button type="button" data-filter="todas" aria-pressed="true" aria-controls="catalog-results">Todas <span>{photos.length}</span></button>
           {categories.map(category => <button type="button" data-filter={category.id} aria-pressed="false" aria-controls="catalog-results">{category.title} <span>{photos.filter(item => item.categoria_catalogo === category.id).length}</span></button>)}
@@ -67,13 +82,20 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
         <div id="catalog-results">{categories.map(category => <section class="catalog-group" data-group={category.id} aria-labelledby={`heading-${category.id}`}>
           <h3 class="catalog-heading" id={`heading-${category.id}`}>{category.title}</h3>
           <div class="category-grid">{photos.filter(item => item.categoria_catalogo === category.id).map(item => <article class="category" data-photo-id={item.id}>
-            <button type="button" class="photo-button" data-photo={'/' + item.foto_web} data-caption={item.titulo_catalogo} aria-label={`Ampliar: ${item.titulo_catalogo}`}><img src={'/' + item.foto_web} alt={item.alt} width="600" height="750" loading="lazy" decoding="async" /><span class="expand" aria-hidden="true">↗</span></button>
+            <button type="button" class="photo-button" data-photo={'/' + item.foto_web} data-caption={item.titulo_catalogo} aria-label={`Ampliar: ${item.titulo_catalogo}`}><img src={'/assets/miniaturas/' + item.foto_web.split('/').pop()} alt={item.alt} width="600" height={item.id === 'foto-028' ? 450 : 800} loading="lazy" decoding="async" /><span class="expand" aria-hidden="true">↗</span></button>
             <h4>{item.titulo_catalogo}</h4>
           </article>)}</div>
         </section>)}</div>
         <p class="note">Especies, variedades y disponibilidad a confirmar al consultar.</p>
       </section>
-      <section class="wholesale wrap"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Dinos qué buscas y qué cantidad necesitas. También atendemos consultas de particulares.</p></div><a class="button" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></section>
+      <section class="wholesale wrap" id="mayoristas"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Celi’s Viveros atiende consultas de viveros, paisajistas y revendedores interesados en adquirir plantas ornamentales por volumen. Consulta especies, formatos y disponibilidad directamente con nosotros.</p></div><a class="button" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></section>
+      <section class="plants wrap" id="ubicacion" aria-labelledby="ubicacion-titulo">
+        <h2 id="ubicacion-titulo">Ubicación y horarios</h2>
+        <p>Visítanos en {site.addressDisplay}, Chile. Estamos en el sector de San Jorge / Pocochay, en la provincia de Quillota.</p>
+        <p>{site.hoursDisplay}</p>
+        <p>Atención presencial y retiro en vivero. Antes de venir desde Quillota u otras comunas, consulta por WhatsApp las especies, formatos y disponibilidad.</p>
+        <a class="button" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.name + ', ' + site.addressDisplay + ', Chile')}`} target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a>
+      </section>
     </main>
     <footer class="wrap"><a class="footer-logo" href="#inicio" aria-label="Celi’s Viveros, inicio"><img src="/logo.png" alt="Celi’s Viveros" width="1122" height="1402" loading="lazy" /></a><p>{site.addressDisplay}</p><SocialLinks /><small>© {new Date().getFullYear()}</small></footer>
     {import.meta.env.DEV && missing.length > 0 && <aside class="dev-notice"><strong>Vista local:</strong> los contactos pendientes se activan al completar <code>src/config/site.ts</code>. No se muestran en producción.</aside>}
