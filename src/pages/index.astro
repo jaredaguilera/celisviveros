@@ -9,10 +9,10 @@ const logo = existsSync('public/logo.png');
 const photo = (index: number) => photos[index];
 const image = (index: number) => '/' + photo(index).foto_web;
 const categories = [
-  { title: 'Flores y ornamentales', index: 23 },
-  { title: 'Suculentas', index: 14 },
-  { title: 'Cóleos y follajes', index: 10 },
-  { title: 'Nuestro vivero', index: 7 },
+  { id: 'flores', title: 'Flores y ornamentales' },
+  { id: 'suculentas', title: 'Suculentas' },
+  { id: 'follajes', title: 'Cóleos y follajes' },
+  { id: 'vivero', title: 'Nuestro vivero' },
 ];
 const description = 'Vivero familiar productor de plantas ornamentales, flores y suculentas en Pocochay, La Cruz, Chile. Consulta por disponibilidad y cotizaciones mayoristas.';
 const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && !value).map(([key]) => key);
@@ -58,9 +58,20 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
         </div>
       </section>
       <section class="plants wrap" id="plantas">
-        <div class="section-heading"><h2>Conoce nuestro <em>vivero.</em></h2><p>Fotos reales. Toca una para ampliar.</p></div>
-        <div class="category-grid">{categories.map(category => <article class="category"><button class="photo-button" data-photo={image(category.index)} data-caption={category.title} aria-label={`Ampliar: ${category.title}`}><img src={image(category.index)} alt={photo(category.index).alt} width="600" height="750" loading="lazy" /><span class="expand" aria-hidden="true">↗</span></button><h3>{category.title}</h3></article>)}</div>
-        <p class="note">Variedades y disponibilidad a confirmar al consultar.</p>
+        <div class="section-heading"><h2>Nuestras <em>plantas.</em></h2><p>Fotos reales. Toca una para ampliar.</p></div>
+        <div class="catalog-filters" role="group" aria-label="Filtrar catálogo">
+          <button type="button" data-filter="todas" aria-pressed="true" aria-controls="catalog-results">Todas <span>{photos.length}</span></button>
+          {categories.map(category => <button type="button" data-filter={category.id} aria-pressed="false" aria-controls="catalog-results">{category.title} <span>{photos.filter(item => item.categoria_catalogo === category.id).length}</span></button>)}
+        </div>
+        <p class="catalog-status" aria-live="polite" aria-atomic="true">{photos.length} fotografías</p>
+        <div id="catalog-results">{categories.map(category => <section class="catalog-group" data-group={category.id} aria-labelledby={`heading-${category.id}`}>
+          <h3 class="catalog-heading" id={`heading-${category.id}`}>{category.title}</h3>
+          <div class="category-grid">{photos.filter(item => item.categoria_catalogo === category.id).map(item => <article class="category" data-photo-id={item.id}>
+            <button type="button" class="photo-button" data-photo={'/' + item.foto_web} data-caption={item.titulo_catalogo} aria-label={`Ampliar: ${item.titulo_catalogo}`}><img src={'/' + item.foto_web} alt={item.alt} width="600" height="750" loading="lazy" decoding="async" /><span class="expand" aria-hidden="true">↗</span></button>
+            <h4>{item.titulo_catalogo}</h4>
+          </article>)}</div>
+        </section>)}</div>
+        <p class="note">Especies, variedades y disponibilidad a confirmar al consultar.</p>
       </section>
       <section class="wholesale wrap"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Dinos qué buscas y qué cantidad necesitas. También atendemos consultas de particulares.</p></div><a class="button" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></section>
     </main>
@@ -68,6 +79,18 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
     {import.meta.env.DEV && missing.length > 0 && <aside class="dev-notice"><strong>Vista local:</strong> los contactos pendientes se activan al completar <code>src/config/site.ts</code>. No se muestran en producción.</aside>}
     <dialog aria-labelledby="photo-caption" id="lightbox"><button class="close" autofocus aria-label="Cerrar fotografía">Cerrar ×</button><img id="large-photo" alt="" /><p id="photo-caption"></p></dialog>
     <script>
+      const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+      const groups = document.querySelectorAll<HTMLElement>('[data-group]');
+      const status = document.querySelector<HTMLElement>('.catalog-status')!;
+      filters.forEach(filter => filter.addEventListener('click', () => {
+        filters.forEach(button => button.setAttribute('aria-pressed', String(button === filter)));
+        let count = 0;
+        groups.forEach(group => {
+          group.hidden = filter.dataset.filter !== 'todas' && group.dataset.group !== filter.dataset.filter;
+          if (!group.hidden) count += group.querySelectorAll('[data-photo-id]').length;
+        });
+        status.textContent = `${count} ${count === 1 ? 'fotografía' : 'fotografías'}`;
+      }));
       const dialog = document.querySelector<HTMLDialogElement>('#lightbox')!;
       const large = document.querySelector<HTMLImageElement>('#large-photo')!;
       const caption = document.querySelector('#photo-caption')!;

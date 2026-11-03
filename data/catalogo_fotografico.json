@@ -10,7 +10,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Flores y ornamentales en cultivo"
   },
   {
     "id": "foto-002",
@@ -23,7 +25,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Flores y follajes bajo cubierta"
   },
   {
     "id": "foto-003",
@@ -36,7 +40,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Pasillo de producción"
   },
   {
     "id": "foto-004",
@@ -49,7 +55,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Plantas en crecimiento"
   },
   {
     "id": "foto-005",
@@ -62,7 +70,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Follajes en bolsas de cultivo"
   },
   {
     "id": "foto-006",
@@ -75,7 +85,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Filas de plantas ornamentales"
   },
   {
     "id": "foto-007",
@@ -88,7 +100,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Sectores de follajes y flores"
   },
   {
     "id": "foto-008",
@@ -101,7 +115,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Interior del invernadero"
   },
   {
     "id": "foto-009",
@@ -114,7 +130,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Pasillos e instalaciones"
   },
   {
     "id": "foto-010",
@@ -127,7 +145,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "vivero",
+    "titulo_catalogo": "Plantas en propagación"
   },
   {
     "id": "foto-011",
@@ -140,7 +160,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "follajes",
+    "titulo_catalogo": "Follaje multicolor"
   },
   {
     "id": "foto-012",
@@ -153,20 +175,24 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Colección de arreglos de suculentas"
   },
   {
     "id": "foto-013",
     "categoria": "suculentas",
     "titulo_provisional": "Suculenta en maceta decorativa",
-    "alt": "Arreglo de suculenta de hojas vellosas en maceta decorativa con figura.",
+    "alt": "Arreglo de hojas alargadas en maceta decorativa con figura.",
     "foto_original": "assets/fotos_originales/suculentas/1000149133.jpg",
     "foto_web": "assets/fotos_web/suculentas-13-1000149133.webp",
     "identificacion": "confirmar_especie",
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Arreglo de hojas alargadas"
   },
   {
     "id": "foto-014",
@@ -179,7 +205,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Suculentas en maceta verde"
   },
   {
     "id": "foto-015",
@@ -192,7 +220,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Composición de suculentas"
   },
   {
     "id": "foto-016",
@@ -205,7 +235,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Minijardín de suculentas"
   },
   {
     "id": "foto-017",
@@ -218,7 +250,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Suculentas en maceta roja"
   },
   {
     "id": "foto-018",
@@ -231,7 +265,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Suculentas en recipiente azul"
   },
   {
     "id": "foto-019",
@@ -244,7 +280,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Suculenta en maceta de gato"
   },
   {
     "id": "foto-020",
@@ -257,7 +295,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Suculentas en maceta amarilla"
   },
   {
     "id": "foto-021",
@@ -270,7 +310,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "suculentas",
+    "titulo_catalogo": "Exhibición de suculentas"
   },
   {
     "id": "foto-022",
@@ -283,7 +325,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "follajes",
+    "titulo_catalogo": "Follaje colgante de hojas listadas"
   },
   {
     "id": "foto-023",
@@ -296,7 +340,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flor blanca y burdeos"
   },
   {
     "id": "foto-024",
@@ -309,7 +355,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores de varios colores"
   },
   {
     "id": "foto-025",
@@ -322,7 +370,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores blancas colgantes"
   },
   {
     "id": "foto-026",
@@ -335,7 +385,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores naranjas y amarillas"
   },
   {
     "id": "foto-027",
@@ -348,7 +400,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "follajes",
+    "titulo_catalogo": "Plantines de hojas alargadas"
   },
   {
     "id": "foto-028",
@@ -361,7 +415,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "follajes",
+    "titulo_catalogo": "Follaje rojo y verde"
   },
   {
     "id": "foto-029",
@@ -374,7 +430,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores rojizas y rosadas"
   },
   {
     "id": "foto-030",
@@ -387,7 +445,9 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores rojas en maceta"
   },
   {
     "id": "foto-031",
@@ -400,6 +460,8 @@
     "nombre_botanico_verificado": false,
     "precio_confirmado": false,
     "stock_confirmado": false,
-    "disponibilidad_publicable": false
+    "disponibilidad_publicable": false,
+    "categoria_catalogo": "flores",
+    "titulo_catalogo": "Flores plumosas amarillas y rojas"
   }
 ]
