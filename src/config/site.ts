@@ -1,10 +1,10 @@
 // Completar únicamente con datos oficiales. Reiniciar/build después de editar.
 export const site = {
   name: "Celi’s Viveros",
-  whatsappNumber: '', // Formato internacional, solo dígitos.
-  facebookUrl: '',
-  instagramUrl: '',
-  email: '',
+  whatsappNumber: '56949070733', // Formato internacional, solo dígitos.
+  facebookUrl: 'https://www.facebook.com/profile.php?id=100063702034489&locale=es_LA',
+  instagramUrl: 'https://www.instagram.com/celis_viveros/',
+  email: 'celisviveros40@gmail.com',
   publicSiteUrl: '', // URL https del dominio final, sin ruta.
 };
 export const publicUrl = /^https:\/\/[^/]+\/?$/.test(site.publicSiteUrl) ? site.publicSiteUrl.replace(/\/$/, '') : '';
