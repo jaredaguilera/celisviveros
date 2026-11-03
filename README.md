@@ -31,7 +31,9 @@ Después de cada cambio, ejecutar nuevamente el build. La URL final activa canon
 
 ## Logo e imágenes
 
-Colocar el logo oficial en `public/logo.png` y reconstruir: reemplaza automáticamente la marca tipográfica del encabezado. Mantener sus proporciones y revisar la legibilidad. El favicon vegetal es un recurso temporal, no un logo oficial.
+El logo entregado está en `public/logo.png`, visible sobre la fotografía de portada y conservando sus proporciones. Para reemplazarlo, actualizar ese archivo y reconstruir. El favicon vegetal es un recurso temporal, no un logo oficial.
+
+El diseño prioriza el contacto en portada, con WhatsApp como acción principal y redes/correo como alternativas. En desarrollo se muestran los canales pendientes sin enlace; producción solo muestra los configurados. Una galería breve conserva las cuatro categorías y la ampliación de fotos, con texto reducido.
 
 Las fotos publicadas están en `public/assets/fotos_web/`; los originales y anuncios de referencia permanecen fuera de la salida pública. El catálogo fuente es `data/catalogo_fotografico.json`, con textos alternativos y rutas. Para cambiar fotos, actualizar el catálogo, copiar el WebP correspondiente a la carpeta pública y ajustar la selección de índices en `src/pages/index.astro`. Usar títulos genéricos hasta verificar identificaciones. Las imágenes debajo de la portada cargan de manera diferida; la portada tiene prioridad. Evitar subir originales grandes o imágenes publicitarias como productos. Conservar las 31 WebP permite ampliar la selección sin usar originales.
 
