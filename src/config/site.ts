@@ -5,6 +5,9 @@ export const site = {
   facebookUrl: 'https://www.facebook.com/profile.php?id=100063702034489&locale=es_LA',
   instagramUrl: 'https://www.instagram.com/celis_viveros/',
   email: 'celisviveros40@gmail.com',
+  phoneDisplay: '+56 9 4907 0733',
+  streetAddress: 'San Jorge, Parcela 40',
+  addressDisplay: 'San Jorge, Parcela 40, La Cruz, Quillota, V Región',
   publicSiteUrl: '', // URL https del dominio final, sin ruta.
 };
 export const publicUrl = /^https:\/\/[^/]+\/?$/.test(site.publicSiteUrl) ? site.publicSiteUrl.replace(/\/$/, '') : '';

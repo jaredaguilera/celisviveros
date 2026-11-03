@@ -1,0 +1,8 @@
+---
+import { site } from '../config/site';
+const links = [
+  { label: 'Instagram', href: site.instagramUrl, path: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm9 9a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm1-5h.01' },
+  { label: 'Facebook', href: site.facebookUrl, path: 'M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-3 0-5 2-5 5v2H7v4h3v8' },
+];
+---
+<div class="social-links">{links.filter(link => link.href).map(link => <a href={link.href} aria-label={`Visitar ${link.label}`} title={link.label} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={link.path} /></svg></a>)}</div>

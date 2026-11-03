@@ -4,6 +4,7 @@ import photos from '../../data/catalogo_fotografico.json';
 import { site, publicUrl } from '../config/site';
 import '../styles/simple.css';
 import ContactButtons from '../components/ContactButtons.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 const logo = existsSync('public/logo.png');
 const photo = (index: number) => photos[index];
 const image = (index: number) => '/' + photo(index).foto_web;
@@ -28,13 +29,13 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
     <meta property="og:title" content="Celi’s Viveros · Desde Pocochay, con raíces" /><meta property="og:description" content={description} />
     {publicUrl && <><meta property="og:url" content={`${publicUrl}/`} /><meta property="og:image" content={`${publicUrl}${image(1)}`} /></>}
     <meta property="og:image:alt" content={photo(1).alt} />
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, address: { '@type': 'PostalAddress', addressLocality: 'Pocochay, La Cruz', addressRegion: 'Valparaíso', addressCountry: 'CL' }, ...(publicUrl ? { url: publicUrl } : {}) })} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, telephone: site.phoneDisplay, email: site.email, sameAs: [site.facebookUrl, site.instagramUrl].filter(Boolean), address: { '@type': 'PostalAddress', streetAddress: site.streetAddress, addressLocality: 'La Cruz, Quillota', addressRegion: 'Valparaíso', addressCountry: 'CL' }, ...(publicUrl ? { url: publicUrl } : {}) })} />
   </head>
   <body>
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <header class="wrap header" id="inicio">
-      <a class="wordmark" href="#inicio" aria-label="Celi’s Viveros, inicio">Celi’s <span>Viveros</span><i aria-hidden="true">✿</i></a>
-      <nav aria-label="Navegación principal"><a href="#plantas">Nuestras plantas</a><a href="#contacto">Contacto <span aria-hidden="true">↗</span></a></nav>
+      <a class="header-logo" href="#inicio" aria-label="Celi’s Viveros, inicio">{logo ? <img src="/logo.png" alt="Celi’s Viveros" width="1122" height="1402" /> : <span>Celi’s Viveros</span>}</a>
+      <div class="header-actions"><nav aria-label="Navegación principal"><a href="#plantas">Nuestras plantas</a><a href="#contacto">Contacto <span aria-hidden="true">↗</span></a></nav><SocialLinks /></div>
     </header>
     <main id="contenido">
       <section class="hero wrap">
@@ -43,6 +44,11 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
           <h1>Un poquito de verde.<br /><em>Muchas posibilidades.</em></h1>
           <p class="intro">Plantas ornamentales y suculentas de nuestro vivero familiar. Consultas y cotizaciones mayoristas, directamente con nosotros.</p>
           <div id="contacto" class="hero-contact"><h2>Conversemos</h2><ContactButtons /></div>
+          <address class="business-details">
+            <a href={`tel:+${site.whatsappNumber}`}><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 3 5-2 2a15 15 0 0 0 5 5l2-2 5 3-1 4C11 22 2 13 4 4l4-1Z" /></svg><span>{site.phoneDisplay}</span></a>
+            <a href={`mailto:${site.email}`}><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3V5Zm0 1 9 7 9-7" /></svg><span>{site.email}</span></a>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.addressDisplay + ', Chile')}`} target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg><span>{site.addressDisplay}<small>Ver en Google Maps ↗</small></span></a>
+          </address>
           <a class="explore" href="#plantas">Conoce nuestras plantas <span aria-hidden="true">↓</span></a>
         </div>
         <div class="hero-visual">
@@ -58,7 +64,7 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
       </section>
       <section class="wholesale wrap"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Dinos qué buscas y qué cantidad necesitas. También atendemos consultas de particulares.</p></div><a class="button" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></section>
     </main>
-    <footer class="wrap"><span class="footer-brand">Celi’s Viveros</span><p>Pocochay, La Cruz · Región de Valparaíso</p><small>© {new Date().getFullYear()}</small></footer>
+    <footer class="wrap"><a class="footer-logo" href="#inicio" aria-label="Celi’s Viveros, inicio"><img src="/logo.png" alt="Celi’s Viveros" width="1122" height="1402" loading="lazy" /></a><p>{site.addressDisplay}</p><SocialLinks /><small>© {new Date().getFullYear()}</small></footer>
     {import.meta.env.DEV && missing.length > 0 && <aside class="dev-notice"><strong>Vista local:</strong> los contactos pendientes se activan al completar <code>src/config/site.ts</code>. No se muestran en producción.</aside>}
     <dialog aria-labelledby="photo-caption" id="lightbox"><button class="close" autofocus aria-label="Cerrar fotografía">Cerrar ×</button><img id="large-photo" alt="" /><p id="photo-caption"></p></dialog>
     <script>

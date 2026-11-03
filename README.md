@@ -31,7 +31,9 @@ Después de cada cambio, ejecutar nuevamente el build. La URL final activa canon
 
 ## Logo e imágenes
 
-El logo entregado está en `public/logo.png`, visible sobre la fotografía de portada y conservando sus proporciones. Para reemplazarlo, actualizar ese archivo y reconstruir. El favicon vegetal es un recurso temporal, no un logo oficial.
+El logo entregado está en `public/logo.png`, visible en el encabezado, la portada y el pie, conservando sus proporciones. Para reemplazarlo, actualizar ese archivo y reconstruir. El favicon vegetal es un recurso temporal, no un logo oficial.
+
+El teléfono, correo y dirección confirmados se muestran junto a los contactos. La dirección enlaza a una búsqueda de Google Maps, sin coordenadas inventadas. `phoneDisplay`, `streetAddress` y `addressDisplay` se mantienen en `src/config/site.ts`. El número de llamada utiliza `whatsappNumber`. Estos datos también se incluyen en el marcado LocalBusiness.
 
 El diseño prioriza el contacto en portada, con WhatsApp como acción principal y redes/correo como alternativas. En desarrollo se muestran los canales pendientes sin enlace; producción solo muestra los configurados. Una galería breve conserva las cuatro categorías y la ampliación de fotos, con texto reducido.
 
@@ -65,7 +67,8 @@ Registrar o usar el dominio que confirme el propietario. Añadirlo al proveedor 
 - [ ] Validar nombres de plantas en `data/inventario_por_validar.csv` antes de introducir información específica.
 - [ ] Confirmar disponibilidad, precios y políticas directamente; no se anuncian como confirmados en la página.
 - [ ] Confirmar condiciones de entrega, cantidades mínimas y plazos antes de añadirlos.
-- [ ] Confirmar horarios, dirección exacta y coordenadas si se decide publicarlos (hoy no se muestran).
+- [x] Dirección confirmada por el propietario: San Jorge, Parcela 40, La Cruz, Quillota, V Región.
+- [ ] Confirmar horarios y coordenadas si se decide publicarlos (no se muestran).
 - [ ] Revisar contenido, fotografías, teclado y pantalla móvil.
 - [ ] Decidir privacidad/consentimiento antes de incorporar analítica o publicidad.
 - [ ] `npm run check` y `npm run build` sin errores.
