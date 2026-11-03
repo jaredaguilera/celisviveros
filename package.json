@@ -1,0 +1,19 @@
+{
+  "name": "celis-viveros",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node node_modules/astro/bin/astro.mjs dev --host 127.0.0.1",
+    "build": "node node_modules/astro/bin/astro.mjs build",
+    "preview": "node node_modules/astro/bin/astro.mjs preview --host 127.0.0.1",
+    "check": "node node_modules/astro/bin/astro.mjs check"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/node": "^22.20.5",
+    "astro": "^7.4.5",
+    "node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}

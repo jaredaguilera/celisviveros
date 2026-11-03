@@ -1,0 +1,71 @@
+---
+import { existsSync } from 'node:fs';
+import photos from '../../data/catalogo_fotografico.json';
+import { site, publicUrl, whatsappUrl, contacts } from '../config/site';
+import '../styles/global.css';
+const logo = existsSync('public/logo.png');
+const photo = (index: number) => photos[index];
+const image = (index: number) => '/' + photo(index).foto_web;
+const categories = [
+  { title: 'Flores y ornamentales', text: 'Color y vida para nuevos espacios.', index: 23 },
+  { title: 'Suculentas', text: 'Pequeños jardines, muchas posibilidades.', index: 14 },
+  { title: 'Cóleos y follajes', text: 'Texturas y contrastes naturales.', index: 10 },
+  { title: 'Nuestro vivero', text: 'Conoce el lugar donde todo crece.', index: 7 },
+];
+const gallery = [0, 3, 20, 25, 9, 30];
+const description = 'Vivero familiar productor de plantas ornamentales, flores y suculentas en Pocochay, La Cruz, Chile. Consulta por disponibilidad y cotizaciones mayoristas.';
+const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && !value).map(([key]) => key);
+---
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" />
+    <title>Celi's Viveros | Plantas ornamentales y suculentas en La Cruz</title>
+    <meta name="description" content={description} /><meta name="theme-color" content="#203f30" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {publicUrl && <link rel="canonical" href={`${publicUrl}/`} />}
+    <meta property="og:type" content="website" /><meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content="Celi’s Viveros · Desde Pocochay, con raíces" /><meta property="og:description" content={description} />
+    {publicUrl && <><meta property="og:url" content={`${publicUrl}/`} /><meta property="og:image" content={`${publicUrl}${image(1)}`} /></>}
+    <meta property="og:image:alt" content={photo(1).alt} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'LocalBusiness', name: site.name, address: { '@type': 'PostalAddress', addressLocality: 'Pocochay, La Cruz', addressRegion: 'Valparaíso', addressCountry: 'CL' }, ...(publicUrl ? { url: publicUrl } : {}) })} />
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <div class="topbar">VIVERO FAMILIAR · POCOCHAY, LA CRUZ <span>Plantas para hacer crecer tus proyectos</span></div>
+    <header class="wrap header">
+      <a class="brand" href="#inicio" aria-label="Celi’s Viveros, inicio">{logo ? <img src="/logo.png" alt="Celi’s Viveros" width="180" height="65" /> : <><img src="/favicon.svg" alt="" width="42" height="42" /><span>Celi’s <em>Viveros</em><small>CULTIVAMOS VIDA</small></span></>}</a>
+      <nav aria-label="Navegación principal"><a href="#nosotros">Nosotros</a><a href="#plantas">Nuestras plantas</a><a href="#mayoristas">Mayoristas</a><a class="nav-contact" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></nav>
+    </header>
+    <main id="contenido">
+      <section class="hero wrap" id="inicio">
+        <div class="hero-copy"><p class="eyebrow"><span class="dot"></span> DE NUESTRAS RAÍCES A TU PROYECTO</p><h1>Plantas ornamentales y suculentas <em>desde Pocochay.</em></h1><p class="intro">Vivero productor en La Cruz. Conoce nuestras variedades y consulta por disponibilidad y cotizaciones mayoristas.</p><div class="actions">{whatsappUrl && <a class="button" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Solicitar cotización por WhatsApp ↗</a>}<a class:list={['button', { outline: !!whatsappUrl }]} href="#plantas">Ver nuestras plantas <span aria-hidden="true">↗</span></a></div><p class="hero-note">Para viveros, paisajistas y revendedores.</p></div>
+        <div class="hero-photo"><img src={image(1)} alt={photo(1).alt} width="1200" height="900" fetchpriority="high" /><span class="photo-label">Creciendo en Pocochay <span aria-hidden="true">✳</span></span><div class="photo-caption">UN POCO DE TIERRA.<br />MUCHA DEDICACIÓN.</div></div>
+      </section>
+      <div class="ribbon"><div class="wrap"><span>Producción local</span><span aria-hidden="true">✳</span><span>Atención mayorista</span><span aria-hidden="true">✳</span><span>Un vivero familiar</span><span aria-hidden="true">✳</span><span>Pocochay, La Cruz</span></div></div>
+      <section class="wrap about section" id="nosotros"><p class="eyebrow">01 / NUESTRAS RAÍCES</p><div><h2>Un vivero familiar.<br /><em>Una forma de cultivar.</em></h2><p>Somos un vivero familiar en Pocochay, La Cruz, dedicado a ornamentales, flores y suculentas.</p><p>Desde nuestro vivero, queremos ser parte de los espacios verdes que imaginas. Conoce nuestras plantas y conversemos sobre lo que necesitas para tu vivero o proyecto.</p><a class="text-link" href="#galeria">Recorre nuestro vivero <span aria-hidden="true">↗</span></a></div></section>
+      <section class="plants section" id="plantas"><div class="wrap"><div class="section-heading"><div><p class="eyebrow">02 / NUESTRAS PLANTAS</p><h2>Hay mucho por <em>hacer crecer.</em></h2></div><p>Flores, formas y texturas.<br />Descubre una muestra de nuestro vivero.</p></div><div class="category-grid">{categories.map((category, i) => <article class="category"><button class="photo-button" data-photo={image(category.index)} data-caption={category.title} aria-label={`Ampliar fotografía: ${category.title}`}><img src={image(category.index)} alt={photo(category.index).alt} width="600" height="750" loading="lazy" /><span class="expand" aria-hidden="true">↗</span></button><span class="category-number">0{i + 1}</span><h3>{category.title}</h3><p>{category.text}</p></article>)}</div><p class="note">Fotografías reales de nuestro vivero. Las variedades y su disponibilidad se confirman al consultar.</p></div></section>
+      <section class="wholesale section" id="mayoristas"><div class="wrap wholesale-grid"><div><p class="eyebrow">03 / CREZCAMOS JUNTOS</p><h2>Tu próximo proyecto<br /><em>empieza con una planta.</em></h2><p class="wholesale-lead">Abastecimiento para viveros, paisajistas y revendedores.</p></div><div><p>Cuéntanos qué especies buscas, qué cantidad necesitas y para cuándo. Confirmaremos disponibilidad, precios y condiciones de entrega.</p><ol><li><span>01</span> Cuéntanos qué estás buscando</li><li><span>02</span> Consultamos disponibilidad y precios</li><li><span>03</span> Coordinamos las condiciones contigo</li></ol>{whatsappUrl ? <a class="button light" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Cotizar por WhatsApp ↗</a> : <a class="button light" href="#contacto">Información de contacto ↗</a>}</div></div></section>
+      <section class="wrap section" id="galeria"><div class="section-heading"><div><p class="eyebrow">04 / UNA MIRADA AL VIVERO</p><h2>Aquí, la vida <em>crece.</em></h2></div><p>Un recorrido en fotografías.<br />Selecciona una imagen para ampliarla.</p></div><div class="gallery">{gallery.map((index, i) => <button class="photo-button" data-photo={image(index)} data-caption={i === 2 ? 'Arreglos de suculentas' : i === 3 || i === 5 ? 'Flores y ornamentales' : 'Un rincón de nuestro vivero'} aria-label={`Ampliar fotografía ${i + 1} del vivero`}><img src={image(index)} alt={photo(index).alt} loading="lazy" width="800" height="600" /><span class="expand" aria-hidden="true">+</span></button>)}</div></section>
+      <section class="contact section" id="contacto"><div class="wrap contact-grid"><div><p class="eyebrow">05 / CONVERSEMOS</p><h2>¿Qué quieres<br /><em>hacer crecer?</em></h2><p>Consulta por plantas para tu negocio o proyecto.<br />También recibimos consultas de particulares.</p></div><div class="contact-details"><p class="location">Pocochay, La Cruz<span>Región de Valparaíso, Chile</span></p>{contacts.length > 0 ? <div class="contact-links">{contacts.map(contact => <a class="button" href={contact.href} target={contact.href.startsWith('https:') ? '_blank' : undefined} rel="noopener noreferrer">{contact.label} ↗</a>)}</div> : <p>Estamos preparando nuestros canales de contacto. Pronto podrás consultar directamente con nosotros.</p>}</div></div></section>
+    </main>
+    <footer class="wrap"><a class="footer-brand" href="#inicio">Celi’s Viveros <span aria-hidden="true">✳</span></a><p>Un vivero familiar en Pocochay.</p><span>© {new Date().getFullYear()} Celi’s Viveros</span></footer>
+    {import.meta.env.DEV && missing.length > 0 && <aside class="dev-notice"><strong>Solo desarrollo:</strong> completar en src/config/site.ts: {missing.join(', ')}. {logo ? '' : 'Falta logo oficial (opcional): public/logo.png.'}</aside>}
+    <dialog aria-labelledby="photo-caption" id="lightbox"><button class="close" autofocus aria-label="Cerrar fotografía">Cerrar ×</button><img id="large-photo" alt="" /><p id="photo-caption"></p></dialog>
+    <script>
+      const dialog = document.querySelector<HTMLDialogElement>('#lightbox')!;
+      const large = document.querySelector<HTMLImageElement>('#large-photo')!;
+      const caption = document.querySelector('#photo-caption')!;
+      document.querySelectorAll<HTMLButtonElement>('[data-photo]').forEach(button => button.addEventListener('click', () => {
+        large.src = button.dataset.photo!;
+        large.alt = button.querySelector('img')?.alt || '';
+        caption.textContent = button.dataset.caption || '';
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+      }));
+      dialog.querySelector('button')!.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
+      dialog.addEventListener('close', () => { document.body.style.overflow = ''; });
+    </script>
+  </body>
+</html>
