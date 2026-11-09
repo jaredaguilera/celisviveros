@@ -20,7 +20,7 @@ export const site = {
 };
 export const publicUrl = /^https:\/\/[^/]+\/?$/.test(site.publicSiteUrl) ? site.publicSiteUrl.replace(/\/$/, '') : '';
 export const whatsappUrl = /^\d{8,15}$/.test(site.whatsappNumber)
-  ? `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hola, quiero consultar precios y disponibilidad mayorista en Celi's Viveros. Soy de [comuna] y necesito [especie y cantidad].")}` : '';
+  ? `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent("Hola, quiero consultar y cotizar plantas en Celi's Viveros. Soy de [comuna] y me interesan [especie y formato].")}` : '';
 const secure = (value: string) => /^https:\/\//.test(value) ? value : '';
 export const contacts = [
   { label: 'Cotizar por WhatsApp', href: whatsappUrl },

@@ -1,7 +1,9 @@
 ---
 import photos from '../../data/catalogo_fotografico.json';
-import { site, publicUrl } from '../config/site';
+import varieties from '../../data/catalogo_variedades.json';
+import { site, publicUrl, whatsappUrl } from '../config/site';
 import '../styles/simple.css';
+import '../styles/catalog.css';
 import ContactButtons from '../components/ContactButtons.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 const logo = true;
@@ -14,7 +16,7 @@ const categories = [
   { id: 'vivero', title: 'Nuestro vivero' },
 ];
 const title = "Celi's Viveros | Vivero y plantas ornamentales en La Cruz";
-const description = 'Plantas ornamentales, flores y suculentas en San Jorge, La Cruz, provincia de Quillota. Visita el vivero y consulta disponibilidad y ventas mayoristas.';
+const description = 'Plantas ornamentales, flores, suculentas, hierbas y plantines en San Jorge, La Cruz. Conoce las variedades y solicita una cotización.';
 const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && !value).map(([key]) => key);
 ---
 <!doctype html>
@@ -56,7 +58,7 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
           <p class="eyebrow">POCOCHAY · LA CRUZ</p>
           <h1>Vivero de plantas ornamentales en La Cruz, Quillota</h1>
           <p class="slogan">Un poquito de verde. <em>Muchas posibilidades.</em></p>
-          <p class="intro">Producimos y vendemos plantas ornamentales, flores de temporada, suculentas, hierbas y plantines, según disponibilidad. Recibimos a particulares y compradores mayoristas en San Jorge, La Cruz, en la Región de Valparaíso.</p>
+          <p class="intro">Producimos y vendemos plantas ornamentales, flores de temporada, suculentas, hierbas y plantines. Recibimos a particulares y compradores mayoristas en San Jorge, La Cruz, en la Región de Valparaíso.</p>
           <div id="contacto" class="hero-contact"><h2>Conversemos</h2><ContactButtons /></div>
           <address class="business-details">
             <a href={`tel:+${site.whatsappNumber}`}><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 3 5-2 2a15 15 0 0 0 5 5l2-2 5 3-1 4C11 22 2 13 4 4l4-1Z" /></svg><span>{site.phoneDisplay}</span></a>
@@ -72,7 +74,7 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
         </div>
       </section>
       <section class="plants wrap" id="plantas">
-        <div class="section-heading"><h2>Nuestras <em>plantas.</em></h2><p>Flores, ornamentales y suculentas de nuestro vivero. Fotos reales; toca una para ampliar.</p></div>
+        <div class="section-heading"><h2>Nuestras <em>plantas.</em></h2><p>Fotos reales del vivero y variedades para consultar. Toca una foto para ampliar.</p></div>
         <div class="catalog-filters" role="group" aria-label="Filtrar catálogo">
           <button type="button" data-filter="todas" aria-pressed="true" aria-controls="catalog-results">Todas <span>{photos.length}</span></button>
           {categories.map(category => <button type="button" data-filter={category.id} aria-pressed="false" aria-controls="catalog-results">{category.title} <span>{photos.filter(item => item.categoria_catalogo === category.id).length}</span></button>)}
@@ -85,14 +87,23 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
             <h4>{item.titulo_catalogo}</h4>
           </article>)}</div>
         </section>)}</div>
-        <p class="note">Especies, variedades y disponibilidad a confirmar al consultar.</p>
+        <section class="variety-catalog" aria-labelledby="variety-title">
+          <div class="section-heading"><h3 id="variety-title">Variedades del <em>inventario.</em></h3><p>Consulta formatos y cotización según tu proyecto.</p></div>
+          <div class="variety-grid">
+            {varieties.map(item => <article class="variety-card">
+              <div><h4>{item.nombre}</h4><p>{item.color} <span aria-hidden="true">·</span> {item.formato}</p><small>{item.categoria}</small></div>
+              <a class="quote-link" href={whatsappUrl || '#contacto'} target={whatsappUrl ? '_blank' : undefined} rel={whatsappUrl ? 'noopener noreferrer' : undefined}>Consultar / Cotizar <span aria-hidden="true">↗</span></a>
+            </article>)}
+          </div>
+        </section>
+        <p class="note">Los nombres y formatos se presentan como referencia comercial. Consulta antes de visitar el vivero.</p>
       </section>
-      <section class="wholesale wrap" id="mayoristas"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Celi’s Viveros atiende consultas de viveros, paisajistas y revendedores interesados en adquirir plantas ornamentales por volumen. Consulta especies, formatos y disponibilidad directamente con nosotros.</p></div><a class="button" href="#contacto">Conversemos <span aria-hidden="true">↗</span></a></section>
+      <section class="wholesale wrap" id="mayoristas"><div><span class="eyebrow">PARA TU NEGOCIO O PROYECTO</span><h2>¿Buscas plantas al por mayor?</h2><p>Celi’s Viveros atiende consultas de viveros, paisajistas y revendedores. Para compras superiores a 20 plantas del mismo tipo, solicita una cotización mayorista directamente con nosotros.</p></div><a class="button" href="#contacto">Consultar / Cotizar <span aria-hidden="true">↗</span></a></section>
       <section class="plants wrap" id="ubicacion" aria-labelledby="ubicacion-titulo">
         <h2 id="ubicacion-titulo">Ubicación y horarios</h2>
         <p>Visítanos en {site.addressDisplay}, Chile. Estamos en el sector de San Jorge / Pocochay, en la provincia de Quillota.</p>
         <p>{site.hoursDisplay}</p>
-        <p>Atención presencial y retiro en vivero. Antes de venir desde Quillota u otras comunas, consulta por WhatsApp las especies, formatos y disponibilidad.</p>
+        <p>Atención presencial y retiro en vivero. Antes de venir desde Quillota u otras comunas, consulta por WhatsApp las especies y formatos.</p>
         <a class="button" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.name + ', ' + site.addressDisplay + ', Chile')}`} target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a>
       </section>
     </main>
