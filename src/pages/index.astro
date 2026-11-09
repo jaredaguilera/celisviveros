@@ -9,6 +9,11 @@ import SocialLinks from '../components/SocialLinks.astro';
 const logo = true;
 const photo = (index: number) => photos[index];
 const image = (index: number) => '/' + photo(index).foto_web;
+const varietyImage = (category: string, index: number) => {
+  const categoryId = category.includes('Sucul') || category.includes('Cactus') ? 'suculentas' : category.includes('Follaje') ? 'follajes' : category.includes('Hierba') ? 'flores' : 'flores';
+  const matches = photos.filter(item => item.categoria_catalogo === categoryId);
+  return matches[index % matches.length] || photos[index % photos.length];
+};
 const categories = [
   { id: 'flores', title: 'Flores y ornamentales' },
   { id: 'suculentas', title: 'Suculentas' },
@@ -90,10 +95,11 @@ const missing = Object.entries(site).filter(([key, value]) => key !== 'name' && 
         <section class="variety-catalog" aria-labelledby="variety-title">
           <div class="section-heading"><h3 id="variety-title">Variedades del <em>inventario.</em></h3><p>Consulta formatos y cotización según tu proyecto.</p></div>
           <div class="variety-grid">
-            {varieties.map(item => <article class="variety-card">
-              <div><h4>{item.nombre}</h4><p>{item.color} <span aria-hidden="true">·</span> {item.formato}</p><small>{item.categoria}</small></div>
+            {varieties.map((item, index) => { const reference = varietyImage(item.categoria, index); return <article class="variety-card">
+              <img src={'/assets/miniaturas/' + reference.foto_web.split('/').pop()} alt={`Imagen referencial de ${item.nombre}`} width="180" height="140" loading="lazy" decoding="async" />
+              <div class="variety-details"><h4>{item.nombre}</h4><p>{item.color} <span aria-hidden="true">·</span> {item.formato}</p><small>{item.categoria} · Imagen referencial</small></div>
               <a class="quote-link" href={whatsappUrl || '#contacto'} target={whatsappUrl ? '_blank' : undefined} rel={whatsappUrl ? 'noopener noreferrer' : undefined}>Consultar / Cotizar <span aria-hidden="true">↗</span></a>
-            </article>)}
+            </article>; })}
           </div>
         </section>
         <p class="note">Los nombres y formatos se presentan como referencia comercial. Consulta antes de visitar el vivero.</p>
